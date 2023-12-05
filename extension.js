@@ -70,13 +70,13 @@ async function analyzeCode(selectedCode) {
                                     </style>
                                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
                                     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+                                    <script>hljs.highlightAll();</script>
                                 </head>
                                 <body>
                                     <h1>Análise de Vulnerabilidade</h1>
                                     <div class="content">
                                         <pre><code class="javascript">${responseMessage}</code></pre>
                                     </div>
-                                    <script>hljs.highlightAll();</script>
                                 </body>
                                 </html>`;
         vscode.window.showInformationMessage(
@@ -94,10 +94,10 @@ async function analyzeCode(selectedCode) {
  * @param {vscode.ExtensionContext} context
  */
 function activate(context) {
-  console.log('Congratulations, your extension "code-analyzer" is now active!');
+  console.log('Congratulations, your extension "mn-analise" is now active!');
 
   let disposable = vscode.commands.registerCommand(
-    "code-analyzer.analyzeCodeCommand",
+    "mn-analise.analyzeCodeCommand",
     function () {
       let editor = vscode.window.activeTextEditor;
       if (!editor) {

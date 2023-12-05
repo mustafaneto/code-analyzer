@@ -1,65 +1,36 @@
-# code-analyzer README
+# Extensão MN Análise
 
-This is the README for your extension "code-analyzer". After writing up a brief description, we recommend including the following sections.
+## Visão Geral
 
-## Features
+A extensão **MN Análise** para o Visual Studio Code permite a análise de trechos de código selecionados em busca de vulnerabilidades usando o modelo GPT-3.5-turbo da OpenAI. A extensão oferece uma maneira simples e rápida de detectar possíveis problemas de segurança em seu código e receber explicações para quaisquer vulnerabilidades identificadas.
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+## Recursos
 
-For example if there is an image subfolder under your extension project workspace:
+- **Detecção de Vulnerabilidades:** Analise trechos de código selecionados em busca de possíveis vulnerabilidades.
+- **Explicação:** Receba explicações detalhadas para as vulnerabilidades detectadas, se houver.
+- **Painel Webview:** Veja os resultados da análise de vulnerabilidades em um painel webview dedicado dentro do Visual Studio Code.
 
-\!\[feature X\]\(images/feature-x.png\)
+## Pré-requisitos
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+Antes de usar a extensão, certifique-se de ter o seguinte:
 
-## Requirements
+- Visual Studio Code instalado
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+## Instalação
 
-## Extension Settings
+1. Instale a extensão no marketplace do Visual Studio Code.
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+## Uso
 
-For example:
+1. Abra um arquivo de código no Visual Studio Code.
+2. Selecione o trecho de código que deseja analisar.
+3. Execute o comando "Buscar vulnerabilidades" na paleta de comandos.
+4. A extensão enviará o código selecionado para a OpenAI para análise.
+5. Um painel webview será aberto exibindo os resultados da análise, incluindo quaisquer vulnerabilidades detectadas e explicações.
 
-This extension contributes the following settings:
+## Notas de Lançamento
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+### Versão 1.0.0
 
-## Known Issues
+- Lançamento inicial da extensão MN Análise.
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**

@@ -1,8 +1,10 @@
 {
-  "name": "code-analyzer",
-  "displayName": "code-analyzer",
+  "name": "mn-analise",
+  "displayName": "mn-analise",
+  "publisher": "MustafaNeto",
+  "icon": "assets/extensao-logo.jpg",
   "description": "",
-  "version": "0.0.1",
+  "version": "1.0.1",
   "engines": {
     "vscode": "^1.84.0"
   },
@@ -14,7 +16,7 @@
   "contributes": {
     "commands": [
       {
-        "command": "code-analyzer.analyzeCodeCommand",
+        "command": "mn-analise.analyzeCodeCommand",
         "title": "Buscar vulnerabilidades"
       }
     ]
@@ -29,6 +31,7 @@
     "@types/node": "18.x",
     "@types/vscode": "^1.84.0",
     "@vscode/test-electron": "^2.3.6",
+    "esbuild": "^0.19.8",
     "eslint": "^8.52.0",
     "glob": "^10.3.10",
     "mocha": "^10.2.0",
