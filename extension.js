@@ -18,7 +18,7 @@ async function analyzeCode(selectedCode) {
     vscode.window.withProgress(
       {
         location: vscode.ProgressLocation.Notification,
-        title: "Análisando código...",
+        title: "Analisando código...",
         cancellable: false,
       },
       async (progress, token) => {

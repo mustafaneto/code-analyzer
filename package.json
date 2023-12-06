@@ -3,8 +3,8 @@
   "displayName": "mn-analise",
   "publisher": "MustafaNeto",
   "icon": "assets/extensao-logo.jpg",
-  "description": "",
-  "version": "1.0.1",
+  "description": "Verifique a segurança do seu código com essa extensão que integra o Visual Studio Code com o ChatGPT",
+  "version": "1.0.2",
   "engines": {
     "vscode": "^1.84.0"
   },
