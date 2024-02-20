@@ -4,7 +4,7 @@
   "publisher": "MustafaNeto",
   "icon": "assets/extensao-logo.jpg",
   "description": "Verifique a segurança do seu código com essa extensão que integra o Visual Studio Code com o ChatGPT",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "engines": {
     "vscode": "^1.84.0"
   },

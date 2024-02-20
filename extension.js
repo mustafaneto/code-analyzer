@@ -3,7 +3,7 @@ const vscode = require("vscode");
 async function analyzeCode(selectedCode) {
   try {
     const OPENAI_API_KEY =
-      "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";
+      "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";
 
     const request = {
       model: "gpt-3.5-turbo",
