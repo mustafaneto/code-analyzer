@@ -2,8 +2,12 @@ const vscode = require("vscode");
 
 async function analyzeCode(selectedCode) {
   try {
-    const OPENAI_API_KEY =
-      "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";
+    const OPENAI_API_KEY = vscode.workspace.getConfiguration().get('mn-analise.openaiApiKey');
+
+    if (!OPENAI_API_KEY) {
+      vscode.window.showErrorMessage("Por favor configure a sua OpenAI API key nas configurações da extenção.");
+      return;
+    }
 
     const request = {
       model: "gpt-3.5-turbo",
@@ -38,6 +42,7 @@ async function analyzeCode(selectedCode) {
         );
 
         const json = await response.json();
+
         const responseMessage = json["choices"][0]["message"]["content"];
 
         const panel = vscode.window.createWebviewPanel(
@@ -95,6 +100,11 @@ async function analyzeCode(selectedCode) {
  */
 function activate(context) {
   console.log('Congratulations, your extension "mn-analise" is now active!');
+
+  const OPENAI_API_KEY = vscode.workspace.getConfiguration().get('mn-analise.openaiApiKey');
+  if (!OPENAI_API_KEY) {
+    vscode.window.showWarningMessage("Por favor configure a sua OpenAI API key nas configurações da extenção (mn-analise.openaiApiKey).");
+  }
 
   let disposable = vscode.commands.registerCommand(
     "mn-analise.analyzeCodeCommand",

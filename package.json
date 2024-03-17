@@ -19,7 +19,17 @@
         "command": "mn-analise.analyzeCodeCommand",
         "title": "Buscar vulnerabilidades"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "MN-Anlise",
+      "properties": {
+        "mn-analise.openaiApiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Sua OpenAI API key."
+        }
+      }
+    }
   },
   "scripts": {
     "lint": "eslint .",
