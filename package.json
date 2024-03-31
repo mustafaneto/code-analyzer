@@ -3,8 +3,8 @@
   "displayName": "mn-analise",
   "publisher": "MustafaNeto",
   "icon": "assets/extensao-logo.jpg",
-  "description": "Verifique a segurança do seu código com essa extensão que integra o Visual Studio Code com o ChatGPT",
-  "version": "1.1.0",
+  "description": "Check the security of your code with this extension that integrates Visual Studio Code with ChatGPT",
+  "version": "3.0.0",
   "engines": {
     "vscode": "^1.84.0"
   },
@@ -17,7 +17,7 @@
     "commands": [
       {
         "command": "mn-analise.analyzeCodeCommand",
-        "title": "Buscar vulnerabilidades"
+        "title": "Search vulnerabilities"
       }
     ],
     "configuration": {
@@ -26,7 +26,20 @@
         "mn-analise.openaiApiKey": {
           "type": "string",
           "default": "",
-          "description": "Sua OpenAI API key."
+          "description": "Your OpenAI API key."
+        },
+        "mn-analise.language": {
+          "type": "string",
+          "default": "English",
+          "enum": [
+            "English",
+            "Português (BR)"
+          ],
+          "enumDescriptions": [
+            "English language",
+            "Português brasileiro"
+          ],
+          "description": "Select your preferred language for code analysis."
         }
       }
     }

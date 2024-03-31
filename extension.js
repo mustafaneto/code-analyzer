@@ -2,19 +2,31 @@ const vscode = require("vscode");
 
 async function analyzeCode(selectedCode) {
   try {
-    const OPENAI_API_KEY = vscode.workspace.getConfiguration().get('mn-analise.openaiApiKey');
+    const OPENAI_API_KEY = vscode.workspace
+      .getConfiguration()
+      .get("mn-analise.openaiApiKey");
+    const preferredLanguage = vscode.workspace
+      .getConfiguration()
+      .get("mn-analise.language");
 
     if (!OPENAI_API_KEY) {
-      vscode.window.showErrorMessage("Por favor configure a sua OpenAI API key nas configurações da extenção.");
+      vscode.window.showErrorMessage(
+        "Please set your OpenAI API Key in the settings of the MN-analise."
+      );
       return;
     }
+
+    const prompt =
+      preferredLanguage === "Português (BR)"
+        ? "Detecte as vulnerabilidades no código e explique, se tiver uma: "
+        : "Detect the vulnerabilities in the code and explain, if there is one: ";
 
     const request = {
       model: "gpt-3.5-turbo",
       messages: [
         {
           role: "system",
-          content: `Detecte as vulnerabilidades no código e explique, se tiver uma:\n${selectedCode}\n`,
+          content: `${prompt} \n${selectedCode}\n`,
         },
       ],
     };
@@ -22,7 +34,7 @@ async function analyzeCode(selectedCode) {
     vscode.window.withProgress(
       {
         location: vscode.ProgressLocation.Notification,
-        title: "Analisando código...",
+        title: "Analyzing code...",
         cancellable: false,
       },
       async (progress, token) => {
@@ -43,11 +55,16 @@ async function analyzeCode(selectedCode) {
 
         const json = await response.json();
 
+        if (!response.ok) {
+          vscode.window.showErrorMessage(`${json['error'].message}`);
+          return;
+        }
+
         const responseMessage = json["choices"][0]["message"]["content"];
 
         const panel = vscode.window.createWebviewPanel(
-          "analideDeVulnerabilidade",
-          "Análise de Vulnerabilidade",
+          "vulnerabilityAnalysis",
+          "Vulnerability Analysis",
           vscode.ViewColumn.Beside,
           {}
         );
@@ -78,14 +95,14 @@ async function analyzeCode(selectedCode) {
                                     <script>hljs.highlightAll();</script>
                                 </head>
                                 <body>
-                                    <h1>Análise de Vulnerabilidade</h1>
+                                    <h1>Vulnerability Analysis</h1>
                                     <div class="content">
                                         <pre><code class="javascript">${responseMessage}</code></pre>
                                     </div>
                                 </body>
                                 </html>`;
         vscode.window.showInformationMessage(
-          "Análise de vulnerabilidade completa."
+          "Vulnerability Analysis complete."
         );
       }
     );
@@ -99,11 +116,13 @@ async function analyzeCode(selectedCode) {
  * @param {vscode.ExtensionContext} context
  */
 function activate(context) {
-  console.log('Congratulations, your extension "mn-analise" is now active!');
-
-  const OPENAI_API_KEY = vscode.workspace.getConfiguration().get('mn-analise.openaiApiKey');
+  const OPENAI_API_KEY = vscode.workspace
+    .getConfiguration()
+    .get("mn-analise.openaiApiKey");
   if (!OPENAI_API_KEY) {
-    vscode.window.showWarningMessage("Por favor configure a sua OpenAI API key nas configurações da extenção (mn-analise.openaiApiKey).");
+    vscode.window.showWarningMessage(
+      "Please configure your OpenAI API key in the extension settings (mn-analise.openaiApiKey)"
+    );
   }
 
   let disposable = vscode.commands.registerCommand(
@@ -112,17 +131,20 @@ function activate(context) {
       let editor = vscode.window.activeTextEditor;
       if (!editor) {
         vscode.window.showErrorMessage("No active text editor found.");
-      } else {
-        let selectedCode = editor.document.getText(editor.selection);
-        analyzeCode(selectedCode);
       }
+      let selectedCode = editor.document.getText(editor.selection);
+
+      if (selectedCode.length === 0) {
+        vscode.window.showErrorMessage("Please select some code to analyze.");
+        return;
+      }
+      analyzeCode(selectedCode);
     }
   );
 
   context.subscriptions.push(disposable);
 }
 
-// This method is called when your extension is deactivated
 function deactivate() {}
 
 module.exports = {

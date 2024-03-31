@@ -1,36 +1,48 @@
-# Extensão MN Análise
+# MN Analise Extension
 
-## Visão Geral
+## Overview
 
-A extensão **MN Análise** para o Visual Studio Code permite a análise de trechos de código selecionados em busca de vulnerabilidades usando o modelo GPT-3.5-turbo da OpenAI. A extensão oferece uma maneira simples e rápida de detectar possíveis problemas de segurança em seu código e receber explicações para quaisquer vulnerabilidades identificadas.
+The **MN Analise** extension for Visual Studio Code allows the analysis of selected code snippets for vulnerabilities using the OpenAI GPT-3.5-turbo model. The extension offers a simple and fast way to detect potential security issues in your code and receive explanations for any vulnerabilities identified.
 
-## Recursos
+## Features
 
-- **Detecção de Vulnerabilidades:** Analise trechos de código selecionados em busca de possíveis vulnerabilidades.
-- **Explicação:** Receba explicações detalhadas para as vulnerabilidades detectadas, se houver.
-- **Painel Webview:** Veja os resultados da análise de vulnerabilidades em um painel webview dedicado dentro do Visual Studio Code.
+- **Vulnerability Detection:** Analyze selected code snippets for potential vulnerabilities.
+- **Explanation:** Receive detailed explanations for the detected vulnerabilities, if any.
+- **Webview Panel:** View the results of the vulnerability analysis in a dedicated webview panel within Visual Studio Code.
 
-## Pré-requisitos
+## Prerequisites
 
-Antes de usar a extensão, certifique-se de ter o seguinte:
+Before using the extension, ensure you have the following:
 
-- Visual Studio Code instalado
+- Visual Studio Code installed
+- An OpenAI API key, with sufficient credit to make requests
 
-## Instalação
+## Installation
 
-1. Instale a extensão no marketplace do Visual Studio Code.
+1. Install the extension from the Visual Studio Code marketplace.
 
-## Uso
+## Usage
 
-1. Abra um arquivo de código no Visual Studio Code.
-2. Selecione o trecho de código que deseja analisar.
-3. Execute o comando "Buscar vulnerabilidades" na paleta de comandos.
-4. A extensão enviará o código selecionado para a OpenAI para análise.
-5. Um painel webview será aberto exibindo os resultados da análise, incluindo quaisquer vulnerabilidades detectadas e explicações.
+1. Define your OpenAI API Key in the Extension Settings.
+2. Open a code file in Visual Studio Code.
+3. Select the snippet of code you wish to analyze.
+4. Run the "Search for vulnerabilities" command from the command palette.
+5. The extension will send the selected code to OpenAI for analysis.
+6. A webview panel will be opened displaying the results of the analysis, including any vulnerabilities detected and explanations.
 
-## Notas de Lançamento
+## Release Notes
 
-### Versão 1.0.0
+### Version 1.0.0
 
-- Lançamento inicial da extensão MN Análise.
+- Initial release of the MN Analysis extension.
+
+### Version 2.0.1
+
+- Adds setting to use one's own OpenAI API Key.
+
+### Version 3.0.0
+
+- Adds setting to select the language.
+- Some UI/UX improvements.
+
 
