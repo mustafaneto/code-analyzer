@@ -1,17 +1,29 @@
 const vscode = require("vscode");
+const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 async function analyzeCode(selectedCode) {
   try {
     const OPENAI_API_KEY = vscode.workspace
       .getConfiguration()
       .get("mn-analise.openaiApiKey");
+    const GEMINI_API_KEY = vscode.workspace
+      .getConfiguration()
+      .get("mn-analise.geminiApiKey");
     const preferredLanguage = vscode.workspace
       .getConfiguration()
       .get("mn-analise.language");
+    const aiProvider = vscode.workspace
+      .getConfiguration()
+      .get("mn-analise.aiProvider");
 
-    if (!OPENAI_API_KEY) {
+    if (aiProvider === "chatgpt" && !OPENAI_API_KEY) {
       vscode.window.showErrorMessage(
         "Please set your OpenAI API Key in the settings of the MN-analise."
+      );
+      return;
+    } else if (aiProvider === "gemini" && !GEMINI_API_KEY) {
+      vscode.window.showErrorMessage(
+        "Please set your Gemini API Key in the settings of the MN-analise."
       );
       return;
     }
@@ -40,27 +52,41 @@ async function analyzeCode(selectedCode) {
       async (progress, token) => {
         progress.report({ increment: 0 });
 
-        const response = await fetch(
-          "https://api.openai.com/v1/chat/completions",
-          {
-            method: "POST",
-            headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + OPENAI_API_KEY,
-            },
-            body: JSON.stringify(request),
+        let responseMessage = "";
+
+        if (aiProvider === "chatgpt") {
+          // OpenAI API (ChatGPT)
+          const response = await fetch(
+            "https://api.openai.com/v1/chat/completions",
+            {
+              method: "POST",
+              headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + OPENAI_API_KEY,
+              },
+              body: JSON.stringify(request),
+            }
+          );
+
+          const json = await response.json();
+
+          if (!response.ok) {
+            vscode.window.showErrorMessage(`${json["error"].message}`);
+            return;
           }
-        );
 
-        const json = await response.json();
+          responseMessage = json["choices"][0]["message"]["content"];
+        } else if (aiProvider === "gemini") {
+          // Google Gemini API
+          const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
+          const model = genAI.getGenerativeModel({ model: "gemini-1.0-pro" });
 
-        if (!response.ok) {
-          vscode.window.showErrorMessage(`${json['error'].message}`);
-          return;
+          const result = await model.generateContent(
+            `${prompt} \n${selectedCode}\n`
+          );
+          responseMessage = result.response.text();
         }
-
-        const responseMessage = json["choices"][0]["message"]["content"];
 
         const panel = vscode.window.createWebviewPanel(
           "vulnerabilityAnalysis",
@@ -89,6 +115,11 @@ async function analyzeCode(selectedCode) {
                                             overflow: auto;
                                             padding: 10px;
                                         }
+                                        .ai-provider {
+                                            font-size: 16px;
+                                            color: #555;
+                                            margin-bottom: 20px;
+                                        }
                                     </style>
                                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
                                     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
@@ -96,6 +127,7 @@ async function analyzeCode(selectedCode) {
                                 </head>
                                 <body>
                                     <h1>Vulnerability Analysis</h1>
+                                    <div class="ai-provider">AI Provider: ${aiProvider.toUpperCase()}</div>
                                     <div class="content">
                                         <pre><code class="javascript">${responseMessage}</code></pre>
                                     </div>
@@ -119,9 +151,13 @@ function activate(context) {
   const OPENAI_API_KEY = vscode.workspace
     .getConfiguration()
     .get("mn-analise.openaiApiKey");
-  if (!OPENAI_API_KEY) {
+  const GEMINI_API_KEY = vscode.workspace
+    .getConfiguration()
+    .get("mn-analise.geminiApiKey");
+
+  if (!OPENAI_API_KEY && !GEMINI_API_KEY) {
     vscode.window.showWarningMessage(
-      "Please configure your OpenAI API key in the extension settings (mn-analise.openaiApiKey)"
+      "Please configure either OpenAI or Gemini API key in the extension settings."
     );
   }
 

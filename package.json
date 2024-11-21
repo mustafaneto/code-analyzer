@@ -4,7 +4,7 @@
   "publisher": "MustafaNeto",
   "icon": "assets/extensao-logo.jpg",
   "description": "Check the security of your code with this extension that integrates Visual Studio Code with ChatGPT",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "engines": {
     "vscode": "^1.84.0"
   },
@@ -28,6 +28,11 @@
           "default": "",
           "description": "Your OpenAI API key."
         },
+        "mn-analise.geminiApiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Your Gemini API key."
+        },
         "mn-analise.language": {
           "type": "string",
           "default": "English",
@@ -40,6 +45,19 @@
             "Português brasileiro"
           ],
           "description": "Select your preferred language for code analysis."
+        },
+        "mn-analise.aiProvider": {
+          "type": "string",
+          "default": "chatgpt",
+          "enum": [
+            "chatgpt",
+            "gemini"
+          ],
+          "enumDescriptions": [
+            "Use OpenAI's ChatGPT for code analysis",
+            "Use Google's Gemini for code analysis"
+          ],
+          "description": "Select the AI provider for code analysis."
         }
       }
     }
@@ -61,6 +79,7 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
+    "@google/generative-ai": "^0.21.0",
     "highlight.js": "^11.9.0",
     "node-fetch": "^3.3.2",
     "openai": "^4.0.0"

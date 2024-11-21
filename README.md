@@ -30,6 +30,12 @@ Before using the extension, ensure you have the following:
 5. The extension will send the selected code to OpenAI for analysis.
 6. A webview panel will be opened displaying the results of the analysis, including any vulnerabilities detected and explanations.
 
+## Video Tutorial 
+
+[![Video Tutorial](https://i.ibb.co/cv8t3jT/videotutorial.png)](https://youtu.be/eYGCIgFqpjU?si=lCK1XrrVDNkk0WzH)
+
+Click Here to Dive Into Our Step-by-Step Video Guide.
+
 ## Release Notes
 
 ### Version 1.0.0
