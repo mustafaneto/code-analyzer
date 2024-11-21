@@ -51,4 +51,10 @@ Click Here to Dive Into Our Step-by-Step Video Guide.
 - Adds setting to select the language.
 - Some UI/UX improvements.
 
+### Version 4.0.0
+
+- Added support for the Gemini AI.
+- Added a new setting to specify the AI provider (OpenAI or Gemini).
+
+
 
