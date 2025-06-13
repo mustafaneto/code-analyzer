@@ -33,6 +33,16 @@
           "default": "",
           "description": "Your Gemini API key."
         },
+        "mn-analise.ollamaModel": {
+          "type": "string",
+          "default": "codellama",
+          "description": "The Ollama model to use for code analysis (e.g., codellama, llama2, mistral)."
+        },
+        "mn-analise.ollamaEndpoint": {
+          "type": "string",
+          "default": "http://localhost:11434",
+          "description": "The Ollama API endpoint URL."
+        },
         "mn-analise.language": {
           "type": "string",
           "default": "English",
@@ -51,11 +61,13 @@
           "default": "chatgpt",
           "enum": [
             "chatgpt",
-            "gemini"
+            "gemini",
+            "ollama"
           ],
           "enumDescriptions": [
             "Use OpenAI's ChatGPT for code analysis",
-            "Use Google's Gemini for code analysis"
+            "Use Google's Gemini for code analysis",
+            "Use local Ollama models for code analysis"
           ],
           "description": "Select the AI provider for code analysis."
         }

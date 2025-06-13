@@ -54,14 +54,51 @@ class CodeAnalyzerService {
         return result.response.text();
     }
 
+    async analyzeWithOllama(code) {
+        const endpoint = Config.ollamaEndpoint || 'http://localhost:11434';
+        const model = Config.ollamaModel;
+
+        const response = await fetch(`${endpoint}/api/generate`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                model: model,
+                prompt: `${Config.prompt} \n${code}\n`,
+                stream: false
+            }),
+        });
+
+        if (!response.ok) {
+            const error = await response.text();
+            this.logError(`Ollama API Error: ${error}`);
+            throw new Error(`Ollama API Error: ${error}`);
+        }
+
+        const json = await response.json();
+        return json.response;
+    }
+
     async analyzeCode(code) {
         try {
             Config.validateApiKeys();
             this.logInfo('Starting code analysis...');
 
-            const responseMessage = Config.aiProvider === 'chatgpt'
-                ? await this.analyzeWithChatGPT(code)
-                : await this.analyzeWithGemini(code);
+            let responseMessage;
+            switch (Config.aiProvider) {
+                case 'chatgpt':
+                    responseMessage = await this.analyzeWithChatGPT(code);
+                    break;
+                case 'gemini':
+                    responseMessage = await this.analyzeWithGemini(code);
+                    break;
+                case 'ollama':
+                    responseMessage = await this.analyzeWithOllama(code);
+                    break;
+                default:
+                    throw new Error('Invalid AI provider selected');
+            }
 
             this.createResultPanel(responseMessage);
             this.logInfo('Analysis completed successfully');

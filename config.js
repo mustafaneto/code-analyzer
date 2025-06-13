@@ -9,6 +9,14 @@ class Config {
         return vscode.workspace.getConfiguration().get('mn-analise.geminiApiKey');
     }
 
+    static get ollamaModel() {
+        return vscode.workspace.getConfiguration().get('mn-analise.ollamaModel');
+    }
+
+    static get ollamaEndpoint() {
+        return vscode.workspace.getConfiguration().get('mn-analise.ollamaEndpoint');
+    }
+
     static get preferredLanguage() {
         return vscode.workspace.getConfiguration().get('mn-analise.language');
     }
@@ -29,6 +37,9 @@ class Config {
         }
         if (this.aiProvider === 'gemini' && !this.geminiApiKey) {
             throw new Error('Please set your Gemini API Key in the settings of the MN-analise.');
+        }
+        if (this.aiProvider === 'ollama' && !this.ollamaModel) {
+            throw new Error('Please set your Ollama model in the settings of the MN-analise.');
         }
     }
 }
