@@ -48,7 +48,7 @@ class CodeAnalyzerService {
 
     async analyzeWithGemini(code) {
         const genAI = new GoogleGenerativeAI(Config.geminiApiKey);
-        const model = genAI.getGenerativeModel({ model: 'gemini-1.0-pro' });
+        const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
 
         const result = await model.generateContent(`${Config.prompt} \n${code}\n`);
         return result.response.text();
