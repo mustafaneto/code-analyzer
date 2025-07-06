@@ -90,7 +90,7 @@ The extension offers several configuration options to customize your experience:
 
 ## Video Tutorial 
 
-[![Video Tutorial](https://i.ibb.co/cv8t3jT/videotutorial.png)](https://youtu.be/eYGCIgFqpjU?si=lCK1XrrVDNkk0WzH)
+[![Video Tutorial](https://i.ibb.co/cv8t3jT/videotutorial.png)](https://youtu.be/-TUOCCtkHns?si=eaXw8YbiHux9r5iH)
 
 Click Here to Dive Into Our Step-by-Step Video Guide.
 
