@@ -15,6 +15,7 @@ The **MN Analise** extension for Visual Studio Code provides comprehensive code 
 - **Interactive Webview Panel:** View analysis results in a dedicated panel within VS Code
 - **Language Support:** Choose between English and Portuguese (BR) for analysis results
 - **Customizable Settings:** Configure API keys, AI providers, and analysis preferences
+- **Dedicated Sidebar:** Easy access through the VS Code activity bar with quick actions
 
 ## Prerequisites
 
@@ -30,17 +31,62 @@ Before using the extension, ensure you have:
 
 1. Install the extension from the Visual Studio Code marketplace
 
+## User Interface
+
+The extension provides a dedicated sidebar accessible through the VS Code activity bar:
+
+### Sidebar Features
+- **MN Analise Icon:** Located in the VS Code activity bar (left sidebar)
+- **Search Vulnerabilities:** Quick access to code analysis functionality
+- **Settings:** Direct link to extension configuration
+- **Clean Interface:** Simple and intuitive navigation
+
+### Activity Bar Integration
+- The extension adds its own icon to the VS Code activity bar
+- Click the icon to open the dedicated sidebar panel
+- Provides quick access to all extension features without using the command palette
+
+## Configuration
+
+The extension offers several configuration options to customize your experience:
+
+### 1. Language Settings
+- **Language:** Choose between English and Portuguese (BR) for analysis results
+- This setting affects the language of vulnerability explanations and interface messages
+
+### 2. AI Provider Selection
+- **ChatGPT (OpenAI):** Use OpenAI's GPT models for analysis
+- **Gemini (Google):** Use Google's Gemini AI for analysis  
+- **Ollama (Local):** Use local Ollama models for offline analysis
+
+### 3. API Configuration
+- **OpenAI API Key:** Required when using ChatGPT provider
+- **Gemini API Key:** Required when using Gemini provider
+- **Ollama Settings:** Configure model name and endpoint for local analysis
+
 ## Usage
 
+### Method 1: Using the Sidebar Menu
+1. Look for the **"MN Analise"** icon in the VS Code activity bar (left sidebar)
+2. Click on the icon to open the extension's dedicated sidebar
+3. In the sidebar, you'll find two options:
+   - **"Search vulnerabilities"** - Click to analyze your selected code
+   - **"Settings"** - Quick access to extension configuration
+4. Select the code you want to analyze in your editor
+5. Click "Search vulnerabilities" in the sidebar
+6. View the analysis results in the webview panel
+
+### Method 2: Using the Command Palette
 1. Configure your preferred settings in the Extension Settings:
-   - Select your AI provider (ChatGPT, Gemini, or Ollama)
-   - Set up the corresponding API key(s)
-   - Choose your preferred language
-   - (Optional) Configure Ollama settings if using local models
+   - **Language:** Choose your preferred language (English or Portuguese)
+   - **AI Provider:** Select your AI provider (ChatGPT, Gemini, or Ollama)
+   - **API Keys:** Set up the corresponding API key(s) for your chosen provider
+   - **Ollama Settings:** (Optional) Configure Ollama settings if using local models
 2. Open a code file in Visual Studio Code
 3. Select the code snippet you wish to analyze
-4. Run the "Search vulnerabilities" command from the command palette
-5. View the analysis results in the webview panel
+4. Press `Ctrl+Shift+P` (or `Cmd+Shift+P` on Mac) to open the command palette
+5. Type "Search vulnerabilities" and select the command
+6. View the analysis results in the webview panel
 
 ## Video Tutorial 
 
@@ -69,6 +115,14 @@ Click Here to Dive Into Our Step-by-Step Video Guide.
 - Enhanced configuration options for AI providers
 - Improved error handling and logging
 - Added support for multiple language options
+
+
+### Version 5.0.3
+- Fixed configuration order using numbered prefixes
+- Language selection now appears first in settings (01.language)
+- AI provider selection appears second (02.aiProvider)
+- API keys and Ollama settings follow in logical order
+- Ensures consistent display order in VS Code settings
 
 
 

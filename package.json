@@ -4,7 +4,7 @@
   "publisher": "MustafaNeto",
   "icon": "assets/extensao-logo.jpg",
   "description": "Check the security of your code with this extension that integrates Visual Studio Code with ChatGPT",
-  "version": "5.0.1",
+  "version": "5.0.3",
   "engines": {
     "vscode": "^1.84.0"
   },
@@ -20,30 +20,27 @@
         "title": "Search vulnerabilities"
       }
     ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "mnAnaliseViewContainer",
+          "title": "MN Analise",
+          "icon": "assets/logo.png"
+        }
+      ]
+    },
+    "views": {
+      "mnAnaliseViewContainer": [
+        {
+          "id": "mnAnaliseView",
+          "name": "MN Analise"
+        }
+      ]
+    },
     "configuration": {
       "title": "MN-Anlise",
       "properties": {
-        "mn-analise.openaiApiKey": {
-          "type": "string",
-          "default": "",
-          "description": "Your OpenAI API key."
-        },
-        "mn-analise.geminiApiKey": {
-          "type": "string",
-          "default": "",
-          "description": "Your Gemini API key."
-        },
-        "mn-analise.ollamaModel": {
-          "type": "string",
-          "default": "codellama",
-          "description": "The Ollama model to use for code analysis (e.g., codellama, llama2, mistral)."
-        },
-        "mn-analise.ollamaEndpoint": {
-          "type": "string",
-          "default": "http://localhost:11434",
-          "description": "The Ollama API endpoint URL."
-        },
-        "mn-analise.language": {
+        "mn-analise.01.language": {
           "type": "string",
           "default": "English",
           "enum": [
@@ -56,7 +53,7 @@
           ],
           "description": "Select your preferred language for code analysis."
         },
-        "mn-analise.aiProvider": {
+        "mn-analise.02.aiProvider": {
           "type": "string",
           "default": "chatgpt",
           "enum": [
@@ -70,6 +67,26 @@
             "Use local Ollama models for code analysis"
           ],
           "description": "Select the AI provider for code analysis."
+        },
+        "mn-analise.03.openaiApiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Your OpenAI API key."
+        },
+        "mn-analise.04.geminiApiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Your Gemini API key."
+        },
+        "mn-analise.05.ollamaModel": {
+          "type": "string",
+          "default": "codellama",
+          "description": "The Ollama model to use for code analysis (e.g., codellama, llama2, mistral)."
+        },
+        "mn-analise.06.ollamaEndpoint": {
+          "type": "string",
+          "default": "http://localhost:11434",
+          "description": "The Ollama API endpoint URL."
         }
       }
     }

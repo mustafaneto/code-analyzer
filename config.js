@@ -2,27 +2,27 @@ const vscode = require('vscode');
 
 class Config {
     static get openaiApiKey() {
-        return vscode.workspace.getConfiguration().get('mn-analise.openaiApiKey');
+        return vscode.workspace.getConfiguration().get('mn-analise.03.openaiApiKey');
     }
 
     static get geminiApiKey() {
-        return vscode.workspace.getConfiguration().get('mn-analise.geminiApiKey');
+        return vscode.workspace.getConfiguration().get('mn-analise.04.geminiApiKey');
     }
 
     static get ollamaModel() {
-        return vscode.workspace.getConfiguration().get('mn-analise.ollamaModel');
+        return vscode.workspace.getConfiguration().get('mn-analise.05.ollamaModel');
     }
 
     static get ollamaEndpoint() {
-        return vscode.workspace.getConfiguration().get('mn-analise.ollamaEndpoint');
+        return vscode.workspace.getConfiguration().get('mn-analise.06.ollamaEndpoint');
     }
 
     static get preferredLanguage() {
-        return vscode.workspace.getConfiguration().get('mn-analise.language');
+        return vscode.workspace.getConfiguration().get('mn-analise.01.language');
     }
 
     static get aiProvider() {
-        return vscode.workspace.getConfiguration().get('mn-analise.aiProvider');
+        return vscode.workspace.getConfiguration().get('mn-analise.02.aiProvider');
     }
 
     static get prompt() {

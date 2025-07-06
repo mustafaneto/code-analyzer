@@ -2,11 +2,45 @@ const vscode = require("vscode");
 const Config = require('./config');
 const CodeAnalyzerService = require('./codeAnalyzerService');
 
+class MnAnaliseTreeItem extends vscode.TreeItem {
+  constructor(label, command) {
+    super(label);
+    this.command = command;
+    this.contextValue = 'mnAnaliseItem';
+  }
+}
+
+class MnAnaliseTreeDataProvider {
+  getTreeItem(element) {
+    return element;
+  }
+  getChildren(element) {
+    if (!element) {
+      return [
+        new MnAnaliseTreeItem('Search vulnerabilities', {
+          command: 'mn-analise.analyzeCodeCommand',
+          title: 'Search vulnerabilities',
+        }),
+        new MnAnaliseTreeItem('Settings', {
+          command: 'workbench.action.openSettings',
+          title: 'Open Settings',
+          arguments: ['@ext:MustafaNeto.mn-analise']
+        })
+      ];
+    }
+    return [];
+  }
+}
+
 /**
  * @param {vscode.ExtensionContext} context
  */
 function activate(context) {
   const codeAnalyzer = new CodeAnalyzerService();
+
+  // Tree View
+  const treeDataProvider = new MnAnaliseTreeDataProvider();
+  vscode.window.registerTreeDataProvider('mnAnaliseView', treeDataProvider);
 
   // Verificar configurações iniciais
   if (!Config.openaiApiKey && !Config.geminiApiKey) {
